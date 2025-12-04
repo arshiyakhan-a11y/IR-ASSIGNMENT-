@@ -36,39 +36,70 @@ CSV File   Text Cleaning   BM25/TF-IDF Local File Query Proc Ranked Results
 Encoding    Tokenization    Indexing    Storage  Relevance   Evaluation
 Detection  Stopword Removal                        Scoring     Metrics
 
-**Project Statistics**
-Dataset Size: 2,692 documents
-Average Document Length: 1,810 characters
-Indexing Time: ~3 seconds
-Query Response Time: 4-8 milliseconds
-Index File Size: ~18 MB
-Vocabulary Size: ~15,000 unique terms
+**Quick Setup Instructions**
 
-**Learning Outcomes**
-Through this project, I have gained practical experience in:
+**1. Open Google Colab**
+Go to https://colab.research.google.com
+Click "New Notebook"
 
-Technical Skills:
-1. Information Retrieval Algorithms: Implementation of BM25 and TF-IDF from scratch
-2. Text Preprocessing: Tokenization, stopword removal, text normalization
-3. Indexing Techniques: Inverted index construction and management
-4. Evaluation Metrics: Precision, Recall, MAP calculation and analysis
-5. System Design: Modular architecture with clear separation of concerns
+**2. Install Packages**
+```python
+!pip install scikit-learn rank-bm25 nltk pandas joblib tqdm chardet
+```
 
-Software Engineering Skills:
-1. Code Organization: Clean, documented, and maintainable code
-2. Error Handling: Robust error detection and recovery mechanisms
-3. Performance Optimization: Efficient memory and time complexity management
-4. Reproducibility: Complete setup and execution documentation
-5. Testing: Unit tests for critical components
+**3. Upload File**
+```python
+from google.colab import files
+files.upload()
+```
+Select your Articles.csv file
 
-**Academic Contributions**
-Original Implementation:
-- Algorithm Implementation: Both BM25 and TF-IDF implemented from first principles
-- System Architecture: Five-layer modular design for maintainability
-- Evaluation Framework: Custom evaluation metrics and analysis
-- Error Handling: Comprehensive error detection and recovery
+**4. Run Complete Code**
+Copy the IR system code into one cell and run it
 
-Research Integration:
+**5. Use System**
+Type commands in interactive mode:
+- `/q your query` - Search
+- `/a bm25` or `/a tfidf` - Choose algorithm
+- `/t 10` - Set number of results
+- `/stats` - Show statistics
+- `/exit` - Quit
+
+**Sample Queries to Test:**
+- `technology`
+- `business`
+- `education`
+- `health`
+- `sports`
+
+**Expected Results:**
+- Index builds in 2-5 seconds
+- Queries return in under 10ms
+- Shows document ID, score, and preview
+
+**Quick Commands:**
+```python
+# BM25 search
+results = ir_system.search_bm25("query", 5)
+
+# TF-IDF search
+results = ir_system.search_tfidf("query", 5)
+
+# Save index
+ir_system.save_index("index.pkl")
+
+# Load index
+ir_system.load_index("index.pkl")
+```
+
+**Troubleshooting:**
+- Missing packages? Re-run install command
+- File errors? Ensure Articles.csv is uploaded
+- NLTK errors? Code auto-downloads required data
+- Memory issues? Use smaller dataset
+
+**Done!** System ready for searching.
+**Research Integration:**
 Applied theoretical concepts from:
 - Robertson & Zaragoza (BM25 framework)
 - Salton & McGill (Vector Space Model)
